@@ -27,7 +27,7 @@ export default function Note({ note }) {
       <div className='bottom'>
         <div className='date'>{note.date}</div>
 
-        <Link to={'/edit'}>
+        <Link to={'/edit'} state={note}>
           <button>Edit</button>
         </Link>
 
