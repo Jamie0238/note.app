@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function note({ note }) {
+export default function Note({ note }) {
   const [screen, setScreen] = useState(false)
 
   function remove() {
