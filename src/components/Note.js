@@ -1,16 +1,22 @@
 import React from 'react'
 
 export default function note({ note }) {
+  const [screen, setScreen] = useState(false)
+
   function remove() {
-    fetch(`https://localhost:3001/notes/${note.id}`, {
-      method: 'DELETE',
-    })
-      .then(res => {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      fetch(`http://localhost:3001/notes/${note.id}`, {
+        method: 'DELETE',
+      }).then(res => {
         if (res.ok) {
-          console.log('삭제')
+          setScreen(true)
         }
       })
-      .then(data => console.log(data))
+    }
+  }
+
+  if (screen === true) {
+    return null
   }
 
   return (
