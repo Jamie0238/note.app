@@ -9,3 +9,8 @@ node js 설치
 
 cd 프로젝트 이름
 mpn start -> 개발 서버를 구동한다.
+
+### json server
+
+npm i -g json-server
+json-server --watch ./src/db/data.json --port 3001
