@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Note({ note }) {
   const [screen, setScreen] = useState(false)
@@ -25,7 +26,11 @@ export default function Note({ note }) {
       <p>{note.detail}</p>
       <div className='bottom'>
         <div className='date'>{note.date}</div>
-        <button>Edit</button>
+
+        <Link to={'/edit'}>
+          <button>Edit</button>
+        </Link>
+
         <button onClick={remove}>Delete</button>
       </div>
     </li>

@@ -25,7 +25,7 @@ export default function Write() {
       body: JSON.stringify({
         title: titleRef.current.value,
         detail: detailRef.current.value,
-        date: moment().format('YYYY MMMM Do h:mm:ss a'),
+        date: moment().format('YYYY MMMM Do'),
       }),
     }).then(res => {
       if (res.ok) {
