@@ -1,31 +1,22 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
+import 'moment/locale/ko'
 
 export default function Note({ note }) {
-  const [screen, setScreen] = useState(false)
+  console.log(note.date.toDate())
 
-  function remove() {
-    if (window.confirm('정말 삭제하시겠습니까?')) {
-      fetch(`http://localhost:3001/notes/${note.id}`, {
-        method: 'DELETE',
-      }).then(res => {
-        if (res.ok) {
-          setScreen(true)
-        }
-      })
-    }
-  }
+  const dt = note.date.toDate()
+  const date = moment(dt).format('YYYY년 MMMM Do hh:mm:ss')
 
-  if (screen === true) {
-    return null
-  }
+  function remove() {}
 
   return (
     <li className='note' key={note.id}>
       <h2>{note.title}</h2>
       <p>{note.detail}</p>
       <div className='bottom'>
-        <div className='date'>{note.date}</div>
+        {<div className='date'>{date}</div>}
 
         <Link to={'/edit'} state={note}>
           <button>Edit</button>
