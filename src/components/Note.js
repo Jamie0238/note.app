@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import 'moment/locale/ko'
+import { db } from '../firebase'
+import { doc, deleteDoc } from 'firebase/firestore'
+import { MdMode, MdDelete } from 'react-icons/md'
 
 export default function Note({ note }) {
   console.log(note.date.toDate())
@@ -9,7 +12,11 @@ export default function Note({ note }) {
   const dt = note.date.toDate()
   const date = moment(dt).format('YYYY년 MMMM Do hh:mm:ss')
 
-  function remove() {}
+  async function remove() {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      await deleteDoc(doc(db, 'notes', note.id))
+    }
+  }
 
   return (
     <li className='note' key={note.id}>
@@ -19,10 +26,11 @@ export default function Note({ note }) {
         {<div className='date'>{date}</div>}
 
         <Link to={'/edit'} state={note}>
-          <button>Edit</button>
+          <MdMode />
         </Link>
-
-        <button onClick={remove}>Delete</button>
+        <a href='#x' onClick={remove}>
+          <MdDelete />
+        </a>
       </div>
     </li>
   )

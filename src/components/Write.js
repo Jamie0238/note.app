@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment/moment'
 import 'moment/locale/ko'
+import { db } from '../firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 export default function Write() {
   const navigate = useNavigate()
@@ -13,10 +15,13 @@ export default function Write() {
     navigate(-1)
   }
 
-  function write(e) {
+  async function write(e) {
     e.preventDefault()
-    console.log(titleRef.current.value)
-    console.log(detailRef.current.value)
+    await addDoc(collection(db, 'items'), {
+      title: titleRef.current.value,
+      detail: detailRef.current.value,
+      date: serverTimestamp(),
+    })
 
     fetch('http://localhost:3001/notes/', {
       method: 'POST',
