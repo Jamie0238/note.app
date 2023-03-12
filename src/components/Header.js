@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div className='header'>
       <Link to={'/'}>
-        <h1>Note</h1>
+        <h1>🥨My Note</h1>
       </Link>
 
       <Link to={'/write'}>
