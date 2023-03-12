@@ -15,6 +15,11 @@ mpn start -> 개발 서버를 구동한다.
 npm i -g json-server
 json-server --watch ./src/db/data.json --port 3001
 
+sort & order
+http://localhost:3001/notes?\_sort=date&\_order=desc
+
 ### react router
 
 nmp i react-router-dom
+
+###
